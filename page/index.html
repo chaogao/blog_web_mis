@@ -1,0 +1,14 @@
+{% extends './layouts/base.html' %}
+
+{% block container%}
+    <h3>hello, {{ user.name }} 请选择要进入的空间</h3>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/mis/blog">
+                <i class="glyphicon glyphicon-book"></i>
+                Blog
+            </a>
+        </div>
+    </div>
+{% endblock %}

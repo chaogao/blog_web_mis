@@ -1,0 +1,45 @@
+{% extends '../layouts/base.html' %}
+
+{% block script %}
+    <script src="./index/index.js"></script>
+{% endblock%}
+
+{% block container %}
+    <h3>我的日志列表：</h3>
+
+    <div class="admin-blog-list">
+        <ul class="list-group">
+            {% for article in articles %}
+                <li class="list-group-item <%= article.top ? 'list-group-item-danger' : '' %>">
+                    <div class="row" data-id="{{ article.id }}" data-title="{{ article.title }}">
+                        <div class="col-md-1">
+                            {% if article.top %}
+                                <span class="top">【顶】</span>
+                            {% endif %}
+
+                            {% if article.draft %}
+                                <span class="draft">【草】</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-9">
+                            <a class="title" href="/mis/article/{{ article.id }}">{{ article.title }}</a>
+                            <p class="text-muted">{{ article.update_time|date('Y-m-d H:i:s', -480) }}</p>
+                        </div>
+
+                        <div class="col-md-2">
+                            <a class="btn btn-primary admin-article-top" href="javascript:void(0)">置顶</a>
+                            <a class="btn btn-default admin-article-del" href="javascript:void(0)">删除</a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h3>操作</h3>
+    <a class="btn btn-primary" href="/mis/blog/create">增加日志</a>
+
+    <h3>Tags</h3>
+
+{% endblock %}

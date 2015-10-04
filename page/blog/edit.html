@@ -1,0 +1,82 @@
+{% extends '../layouts/base.html' %}
+
+{% block style %}
+    <link rel='stylesheet' type="text/css" href='./create/create.less' />
+{% endblock %}
+
+{% block script %}
+    <script src="./components/sync.mod.js"></script>
+    <script>
+        window.APP_DATA = {{ JSON.stringify(article) }};
+    </script>
+
+    <script src="./create/create.js"></script>
+    <script src="./index/index.js"></script>
+{% endblock%}
+
+{% block container %}
+
+    <div ng-app="article-create" ng-controller="articleController as article">
+        <div class="editor-actions">
+
+            <ul class="nav nav-pills nav-justified create-style">
+                <li role="presentation" class="active-markdown active"><a href="javascript:void(0);">编辑</a></li>
+                <li role="presentation" class="active-html"><a href="javascript:void(0);">预览</a></li>
+            </ul>
+
+            <form class="form-horizontal create-blog-form" method="post" action="/mis/blogupdate">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">标题</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="blog[title]" ng-model="article.data.title">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">描述</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="blog[description]" ng-model="article.data.description"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">日志内容图片</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="blog[bg]" ng-model="article.data.ext.bg">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">列表图片</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="blog[titleBg]" ng-model="article.data.ext.titleBg">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">系列</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="blog[series]" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">标签</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="blog[tag]" ng-model="article.data.tag" placeholder="用逗号分隔">
+                    </div>
+                </div>
+                
+                <textarea class="editor-textarea" style="display:none;" name="blog[content]"></textarea>
+
+                <input type="text" name="blog[id]" style="display:none;" ng-model="article.data.id">
+            </form>
+        </div>
+        <div id="editor-create"></div>
+        <div id="editor-html"></div>
+
+        <div class="actions-result text-right">
+            <button  ng-click="submit()" type="button" class="btn btn-primary btn-lg">保存日志</button>
+        </div>
+    </div>
+{% endblock %}
