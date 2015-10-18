@@ -1,5 +1,6 @@
 (function () {
     var Sync = require("../components/sync.mod.js"),
+        Upload = require("../components/upload.mod.js"),
         sync;
 
     /**
@@ -8,6 +9,12 @@
     sync = new Sync({
         editor: "editor-create",
         value: window.APP_DATA && window.APP_DATA.content
+    });
+
+    upload = new Upload();
+
+    $(".btn-upload").on("click", function () {
+        upload.show();
     });
 
     $(".create-style a").on("click", function () {

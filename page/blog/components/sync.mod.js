@@ -20,7 +20,9 @@ var Sync = jsmod.util.klass({
             option = this.option;
 
         editor = ace.edit(option.editor);
+        editor.setFontSize(14);
         editor.setTheme("ace/theme/monokai");
+        
         editor.getSession().setMode("ace/mode/markdown");
         editor.getSession().setTabSize(2);
         editor.setShowPrintMargin(false);
@@ -33,16 +35,6 @@ var Sync = jsmod.util.klass({
             },
             readOnly: true
         });
-
-        // editor.getSession().addEventListener("changeScrollTop", function (top) {
-        //     var sHeight = editor.getSession().getLength() * editor.renderer.lineHeight,
-        //         sPer = top / sHeight,
-        //         height, top;
-
-        //     height = $(".dis-marked-view").get(0).scrollHeight;
-        //     top = height * sPer;
-        //     $(".dis-marked-view").scrollTop(parseInt(top));
-        // });
 
         // 设置编辑器内容
         option.value && editor.setValue(option.value);

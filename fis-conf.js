@@ -42,13 +42,17 @@ fis.media('prod').match('*.{js,css,less,png}', {
     useHash: true
 });
 
+fis.media('prod').match('/public/libs/third/ace/src/ace.js', {
+    useHash: false
+});
+
 // js 、css 压缩配置
-fis.media('prod').match('*.js', {
-    optimizer: fis.plugin('uglify-js')
-});
-fis.media('prod').match('*.{css,less}', {
-    optimizer: fis.plugin('clean-css')
-});
+// fis.media('prod').match('*.js', {
+//     optimizer: fis.plugin('uglify-js')
+// });
+// fis.media('prod').match('*.{css,less}', {
+//     optimizer: fis.plugin('clean-css')
+// });
 
 /**
  * prod 环境打包配置
@@ -83,8 +87,5 @@ fis.media('prod').match('/public/libs/third/angular.js', {
       packTo: '/public/pkg/aio.js'
     })
     .media('prod').match('/public/libs/third/highlight/highlight.pack.js', {
-      packTo: '/public/pkg/aio.js'
-    })
-    .media('prod').match('/public/libs/third/ace/src/ace.js', {
       packTo: '/public/pkg/aio.js'
     });
