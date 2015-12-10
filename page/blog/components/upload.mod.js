@@ -1,5 +1,5 @@
 var TPL = [
-    '<form class="pic-component" method="post" action="/admin/upload" enctype="multipart/form-data" id="pic-component">',
+    '<form class="pic-component" method="post" action="/mis/upload" enctype="multipart/form-data" id="pic-component">',
         '<input type="file" name="image">',
         '<p><img height="200" class="pic-component-image"></p>',
         '<button class="btn submit">提交</button>',
@@ -71,7 +71,7 @@ var Upload = jsmod.util.klass({
             fd = new FormData($("#pic-component").get(0));
 
         if (xhr.upload) {
-            xhr.open("POST", "/admin/upload", true);
+            xhr.open("POST", "/mis/upload", true);
             xhr.onreadystatechange = function(e) {
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
