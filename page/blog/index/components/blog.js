@@ -59,6 +59,37 @@
             }   
         });
     });
+
+    /**
+     * 草稿
+     */
+    $(".admin-blog-list").delegate(".admin-article-draft", "click", function () {
+        var parent = $(this).parents(".row"),
+            id = parent.data("id"),
+            title = parent.data("title"),
+            flag = $(this).data("flag");
+
+        jsmod.ui.confirm({
+            title: "草稿",
+            html: "确认" + (flag == "off" ? "上线" : "转草稿") + title + "吗？",
+            buttonCallback: function (r) {
+                if (r) {
+                    $.ajax({
+                        method: "get",
+                        url: "/admin/articledraft",
+                        data: {
+                            id: id,
+                            flag: flag
+                        }
+                    }).done(function (r) {
+                        if (r.errno == 0) {
+                            window.location.href = window.location.href;
+                        }
+                    });
+                }
+            }   
+        });
+    });
 })();
 
 
