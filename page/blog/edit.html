@@ -72,6 +72,10 @@
                 <textarea class="editor-textarea" style="display:none;" name="blog[content]"></textarea>
 
                 <input type="text" name="blog[id]" style="display:none;" ng-model="article.data.id">
+
+                {% if article.ext.history %}
+                    <input type="text" name="blog[ext_history]" style="display:none;" ng-model="article.data.ext.history">
+                {% endif %}
             </form>
         </div>
         <div id="editor-create"></div>
